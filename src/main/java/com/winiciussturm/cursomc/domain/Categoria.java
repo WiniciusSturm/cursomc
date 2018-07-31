@@ -1,11 +1,14 @@
 package com.winiciussturm.cursomc.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 //JPA converte de objetos para tabelas do banco de dados
 
@@ -18,6 +21,9 @@ public class Categoria implements Serializable //Os objetos da classe podem ser 
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	private String nome;
+	
+	@ManyToMany(mappedBy="categorias")
+	private List<Produto> produtos = new ArrayList<>();//No diagrama de classes, 1 categoria tem vários produtos, então é necessário criar uma lista de produtos
 	
 	public Categoria ()
 	{
@@ -46,7 +52,15 @@ public class Categoria implements Serializable //Os objetos da classe podem ser 
 		this.nome = nome;
 	}
 
-	@Override //Para comparação numérica entre valores, não pelo ponteiro de memória
+	public List<Produto> getProdutos() {
+		return produtos;
+	}
+
+	public void setProdutos(List<Produto> produtos) {
+		this.produtos = produtos;
+	}
+	
+	@Override //Hashcode e equals: Para comparação numérica entre valores, não pelo ponteiro de memória
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
@@ -70,6 +84,5 @@ public class Categoria implements Serializable //Os objetos da classe podem ser 
 			return false;
 		return true;
 	}
-	
 	
 }
