@@ -12,6 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity//Fazer mapeamento da classe Produto
 public class Produto implements Serializable //Os objetos da classe podem ser convertidos para uma sequência de bytes
 {
@@ -24,6 +26,7 @@ public class Produto implements Serializable //Os objetos da classe podem ser co
 	private Double preco;
 	
 	//Anotação jpa
+	@JsonBackReference //Informa que do outro lado da aplicação já foram buscados os objetos, omitindo a lista de categorias para cada produto.
 	@ManyToMany
 	@JoinTable (name="PRODUTO_CATEGORIA",
 		joinColumns = @JoinColumn (name="produto_id"),//Chave estrangeira que referencia produtos
