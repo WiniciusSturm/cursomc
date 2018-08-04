@@ -17,6 +17,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 @Entity //Indica que a classe é uma entidade do jpa
 public class Categoria implements Serializable //Os objetos da classe podem ser convertidos para uma sequência de bytes
 {
+	
 	private static final long serialVersionUID = 1L;
 	
 	@Id
