@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 public class Endereco implements Serializable //Os objetos da classe podem ser convertidos para uma sequência de bytes
 {
@@ -24,6 +26,7 @@ public class Endereco implements Serializable //Os objetos da classe podem ser c
 	private String bairro;
 	private String cep;
 	
+	@JsonBackReference ////Proteger Json cíclico: cliente pode serializar endereço, mas endereço não pode serializar cliente
 	@ManyToOne
 	@JoinColumn(name="cliente_id")
 	private Cliente cliente;

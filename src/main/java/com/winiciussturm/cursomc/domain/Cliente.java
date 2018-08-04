@@ -14,6 +14,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.winiciussturm.cursomc.domain.enums.TipoCliente;
 
 @Entity
@@ -30,6 +31,7 @@ public class Cliente implements Serializable //Os objetos da classe podem ser co
 	private String cpfOuCnpj;
 	private Integer tipo; //Alterado de TipoCliente para Integer após gerar getters and setters
 	
+	@JsonManagedReference//Proteger Json cíclico: cliente pode serializar endereço, mas endereço não pode serializar cliente
 	@OneToMany(mappedBy="cliente")
 	private List<Endereco> enderecos  = new ArrayList<>();
 	

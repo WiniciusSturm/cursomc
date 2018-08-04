@@ -10,6 +10,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 public class Estado implements Serializable //Os objetos da classe podem ser convertidos para uma sequência de bytes
 {
@@ -21,6 +24,7 @@ public class Estado implements Serializable //Os objetos da classe podem ser con
 	private Integer id;
 	private String nome;
 	
+	@JsonBackReference//Proteger Json cíclico: cliente pode serializar endereço, mas endereço não pode serializar cliente
 	@OneToMany(mappedBy="estado") //Mapeamento da associação
 	private List<Cidade> cidades = new ArrayList<>(); //Associação pq segundo diagrama de classes, o estado possui várias cidades
 	
