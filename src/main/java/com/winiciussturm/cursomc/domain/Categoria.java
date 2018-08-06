@@ -10,8 +10,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 //JPA converte de objetos para tabelas do banco de dados
 
 @Entity //Indica que a classe é uma entidade do jpa
@@ -25,7 +23,6 @@ public class Categoria implements Serializable //Os objetos da classe podem ser 
 	private Integer id;
 	private String nome;
 	
-	@JsonManagedReference //Para mostrar a lista de produtos associados à categoria
 	@ManyToMany(mappedBy="categorias")
 	private List<Produto> produtos = new ArrayList<>();//No diagrama de classes, 1 categoria tem vários produtos, então é necessário criar uma lista de produtos
 	

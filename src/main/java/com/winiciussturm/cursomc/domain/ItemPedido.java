@@ -13,7 +13,7 @@ public class ItemPedido implements Serializable //Os objetos da classe podem ser
 	
 	private static final long serialVersionUID = 1L;
 
-	@JsonIgnore
+	@JsonIgnore //Proteger Json cíclico: cliente pode serializar endereço, mas endereço não pode serializar cliente
 	@EmbeddedId
 	private ItemPedidoPK id = new ItemPedidoPK();
 	

@@ -9,8 +9,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 @Entity
 public class Cidade implements Serializable //Os objetos da classe podem ser convertidos para uma sequência de bytes
 {
@@ -22,7 +20,6 @@ public class Cidade implements Serializable //Os objetos da classe podem ser con
 	private Integer id;
 	private String nome;
 	
-	@JsonManagedReference//Proteger Json cíclico: cliente pode serializar endereço, mas endereço não pode serializar cliente
 	@ManyToOne //Mapeamento da associação
 	@JoinColumn(name="estado_id") //Nome da chave estrangeira da tabela cidade
 	private Estado estado;
