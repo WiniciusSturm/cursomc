@@ -18,10 +18,10 @@ public class PedidoResource
 	private PedidoService service;
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.GET) //Endpoint
-	public ResponseEntity<?> find(@PathVariable Integer id) //PathVariable indica que o argumento é o Id recebido na URL 
+	public ResponseEntity<Pedido> find(@PathVariable Integer id) //PathVariable indica que o argumento é o Id recebido na URL 
 	{ //ResponseEntity = tipo especial do Spring que armazena várias informações de uma reposta HTTP para um serviço REST
 		
-		Pedido obj = service.buscar(id);
+		Pedido obj = service.find(id);
 		return ResponseEntity.ok().body(obj);
 		
 	}

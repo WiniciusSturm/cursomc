@@ -22,10 +22,10 @@ public class CategoriaResource
 	private CategoriaService service;
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.GET) //Endpoint
-	public ResponseEntity<?> find(@PathVariable Integer id) //PathVariable indica que o argumento é o Id recebido na URL 
+	public ResponseEntity<Categoria> find(@PathVariable Integer id) //PathVariable indica que o argumento é o Id recebido na URL 
 	{ //ResponseEntity = tipo especial do Spring que armazena várias informações de uma reposta HTTP para um serviço REST
 		
-		Categoria obj = service.buscar(id);
+		Categoria obj = service.find(id);
 		return ResponseEntity.ok().body(obj);
 		
 	}
@@ -36,6 +36,14 @@ public class CategoriaResource
 		obj = service.insert(obj); //A operação save do repository retorna um objeto
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri(); //Para definir o path do novo objeto
 		return ResponseEntity.created(uri).build();
+	}
+	
+	@RequestMapping(value="/{id}", method=RequestMethod.PUT)
+	public ResponseEntity<Void> update (@RequestBody Categoria obj, @PathVariable Integer id)
+	{
+		obj.setId(id);
+		obj = service.update(obj);
+		return ResponseEntity.noContent().build();
 	}
 	
 }
