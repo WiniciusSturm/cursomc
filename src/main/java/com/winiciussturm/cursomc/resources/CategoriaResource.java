@@ -1,6 +1,8 @@
 package com.winiciussturm.cursomc.resources;
 
 import java.net.URI;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.winiciussturm.cursomc.domain.Categoria;
+import com.winiciussturm.cursomc.dto.CategoriaDTO;
 import com.winiciussturm.cursomc.services.CategoriaService;
 
 @RestController //Anotação
@@ -24,10 +27,8 @@ public class CategoriaResource
 	@RequestMapping(value="/{id}", method=RequestMethod.GET) //Endpoint
 	public ResponseEntity<Categoria> find(@PathVariable Integer id) //PathVariable indica que o argumento é o Id recebido na URL 
 	{ //ResponseEntity = tipo especial do Spring que armazena várias informações de uma reposta HTTP para um serviço REST
-		
 		Categoria obj = service.find(id);
 		return ResponseEntity.ok().body(obj);
-		
 	}
 	
 	@RequestMapping(method=RequestMethod.POST)
@@ -51,6 +52,14 @@ public class CategoriaResource
 	{
 		service.delete(id);
 		return ResponseEntity.noContent().build();
+	}
+	
+	@RequestMapping(method=RequestMethod.GET) //Endpoint
+	public ResponseEntity<List<CategoriaDTO>> findAll() 
+	{ //ResponseEntity = tipo especial do Spring que armazena várias informações de uma reposta HTTP para um serviço REST
+		List<Categoria> list = service.findAll();
+		List<CategoriaDTO> listDTO = list.stream().map(obj -> new CategoriaDTO(obj)).collect(Collectors.toList()); //Converte uma lista para outra lista
+		return ResponseEntity.ok().body(listDTO);
 	}
 	
 }
