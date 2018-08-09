@@ -4,6 +4,8 @@ import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
@@ -34,16 +36,18 @@ public class CategoriaResource
 	}
 	
 	@RequestMapping(method=RequestMethod.POST)
-	public ResponseEntity<Void> insert(@RequestBody Categoria obj)//Para gravar nova categoria através do Json
+	public ResponseEntity<Void> insert(@Valid @RequestBody CategoriaDTO objDTO)//Para gravar nova categoria através do Json
 	{ //@Requestbody Converte o Json para o objeto java automaticamente
+		Categoria obj = service.fromDTO(objDTO);
 		obj = service.insert(obj); //A operação save do repository retorna um objeto
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri(); //Para definir o path do novo objeto
 		return ResponseEntity.created(uri).build();
 	}
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.PUT)
-	public ResponseEntity<Void> update (@RequestBody Categoria obj, @PathVariable Integer id)
+	public ResponseEntity<Void> update (@Valid @RequestBody CategoriaDTO objDto, @PathVariable Integer id)
 	{
+		Categoria obj = service.fromDTO(objDto);
 		obj.setId(id);
 		obj = service.update(obj);
 		return ResponseEntity.noContent().build();
