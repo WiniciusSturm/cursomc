@@ -1,5 +1,6 @@
 package com.winiciussturm.cursomc.resources;
 
+import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -14,9 +15,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.winiciussturm.cursomc.domain.Cliente;
 import com.winiciussturm.cursomc.dto.ClienteDTO;
+import com.winiciussturm.cursomc.dto.ClienteNewDTO;
 import com.winiciussturm.cursomc.services.ClienteService;
 
 @RestController //Anotação
@@ -33,6 +36,15 @@ public class ClienteResource
 		Cliente obj = service.find(id);
 		return ResponseEntity.ok().body(obj);
 		
+	}
+	
+	@RequestMapping(method=RequestMethod.POST)
+	public ResponseEntity<Void> insert(@Valid @RequestBody ClienteNewDTO objDTO)//Para gravar nova categoria através do Json
+	{ //@Requestbody Converte o Json para o objeto java automaticamente
+		Cliente obj = service.fromDTO(objDTO);
+		obj = service.insert(obj); //A operação save do repository retorna um objeto
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri(); //Para definir o path do novo objeto
+		return ResponseEntity.created(uri).build();
 	}
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.PUT)
