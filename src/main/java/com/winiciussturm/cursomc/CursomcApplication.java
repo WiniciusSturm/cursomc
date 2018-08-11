@@ -61,7 +61,7 @@ public class CursomcApplication implements CommandLineRunner { //implements para
 	public void run(String... args) throws Exception 
 	{
 		
-		Categoria cat1 = new Categoria (null, "Informática");// Nulo pq o banco de dados criará automaticamente o ID
+		Categoria cat1 = new Categoria(null, "Informática");// Nulo pq o banco de dados criará automaticamente o ID
 		Categoria cat2 = new Categoria(null, "Escritório");
 		Categoria cat3 = new Categoria(null, "Cama mesa e banho");
 		Categoria cat4 = new Categoria(null, "Eletrônicos");
@@ -100,7 +100,7 @@ public class CursomcApplication implements CommandLineRunner { //implements para
 		
 		cli1.getTelefones().addAll(Arrays.asList("27363323","93838393"));
 		
-		Endereco e1 = new Endereco(null, "Rua  Flores", "300", "Apto 303", "Jardim", "38220834", cli1, c1);
+		Endereco e1 = new Endereco(null, "Rua Flores", "300", "Apto 303", "Jardim", "38220834", cli1, c1);
 		Endereco e2 = new Endereco(null, "Avenida Matos", "105", "Sala 800", "Centro", "38777012", cli1, c2);
 		
 		cli1.getEnderecos().addAll(Arrays.asList(e1,e2));

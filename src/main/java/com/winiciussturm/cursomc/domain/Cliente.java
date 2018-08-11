@@ -6,6 +6,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.CollectionTable;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
@@ -31,7 +32,7 @@ public class Cliente implements Serializable //Os objetos da classe podem ser co
 	private String cpfOuCnpj;
 	private Integer tipo; //Alterado de TipoCliente para Integer após gerar getters and setters
 	
-	@OneToMany(mappedBy="cliente")
+	@OneToMany(mappedBy="cliente", cascade=CascadeType.ALL)
 	private List<Endereco> enderecos  = new ArrayList<>();
 	
 	@ElementCollection //Para mapear um conjunto de elementos fracos
