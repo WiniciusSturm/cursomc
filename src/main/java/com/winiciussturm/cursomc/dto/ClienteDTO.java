@@ -8,7 +8,9 @@ import javax.validation.constraints.NotEmpty;
 import org.hibernate.validator.constraints.Length;
 
 import com.winiciussturm.cursomc.domain.Cliente;
+import com.winiciussturm.cursomc.services.validation.ClienteUpdate;
 
+@ClienteUpdate
 public class ClienteDTO implements Serializable //Define os dados que quero trafegar em operações básicas de categoria
 {
 	
