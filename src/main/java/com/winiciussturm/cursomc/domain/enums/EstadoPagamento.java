@@ -8,7 +8,7 @@ public enum EstadoPagamento
 	CANCELADO (3, "Cancelado");
 	
 	private int cod;
-	private String descricao;
+	public String descricao;
 	
 	private EstadoPagamento (int cod, String descricao)
 	{
