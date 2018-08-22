@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.winiciussturm.cursomc.domain.Produto;
-import com.winiciussturm.cursomc.dto.CategoriaDTO;
 import com.winiciussturm.cursomc.dto.ProdutoDTO;
 import com.winiciussturm.cursomc.resources.utils.URL;
 import com.winiciussturm.cursomc.services.ProdutoService;
