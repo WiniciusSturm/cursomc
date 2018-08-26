@@ -20,7 +20,7 @@ public enum Perfil
 		return cod;
 	}
 	
-	public String gedDescricao()
+	public String getDescricao()
 	{
 		return descricao;
 	}
