@@ -15,7 +15,6 @@ import com.winiciussturm.cursomc.domain.ItemPedido;
 import com.winiciussturm.cursomc.domain.PagamentoComBoleto;
 import com.winiciussturm.cursomc.domain.Pedido;
 import com.winiciussturm.cursomc.domain.enums.EstadoPagamento;
-import com.winiciussturm.cursomc.repositories.ClienteRepository;
 import com.winiciussturm.cursomc.repositories.ItemPedidoRepository;
 import com.winiciussturm.cursomc.repositories.PagamentoRepository;
 import com.winiciussturm.cursomc.repositories.PedidoRepository;
