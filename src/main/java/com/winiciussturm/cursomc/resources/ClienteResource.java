@@ -40,6 +40,13 @@ public class ClienteResource
 		
 	}
 	
+	@RequestMapping(value="/email", method=RequestMethod.GET)
+	public ResponseEntity<Cliente> find (@RequestParam(value="value") String email)
+	{
+		Cliente obj = service.findByEmail(email);
+		return ResponseEntity.ok().body(obj);
+	}
+	
 	@RequestMapping(method=RequestMethod.POST)
 	public ResponseEntity<Void> insert(@Valid @RequestBody ClienteNewDTO objDTO)//Para gravar nova categoria através do Json
 	{ //@Requestbody Converte o Json para o objeto java automaticamente
