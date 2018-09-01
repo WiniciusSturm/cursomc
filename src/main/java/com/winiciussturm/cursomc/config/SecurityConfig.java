@@ -46,7 +46,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
 	private static final String[] PUBLIC_MATCHERS_GET =//Caminhos permitidos para recuperar os dados apenas
 		{
 			"/produtos/**",
-			"/categorias/**"
+			"/categorias/**",
+			"/estados/**"
 		};
 	
 	private static final String[] PUBLIC_MATCHERS_POST =//Caminhos permitidos para cadastrar os dados apenas
